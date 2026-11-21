@@ -1,0 +1,1 @@
+[![CI](https://github.com/leal-k/QA-JuiceShop/actions/workflows/ci.yml/badge.svg)](https://github.com/leal-k/QA-JuiceShop/actions/workflows/ci.yml)
