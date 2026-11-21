@@ -6,7 +6,6 @@ Antes de automatizar qualquer coisa, passei pela aplicação como um usuário co
 
 - OWASP Juice Shop **v20.0.0** (tag oficial), rodando em Docker Compose em `http://localhost:3000`
 - Navegador: Firefox, no Linux
-- Exploração feita em 19 e 20 de novembro de 2026
 - Nos exemplos de requisição, o que está entre `< >` é variável, não valor real
 
 ## Resumo rápido
@@ -325,6 +324,8 @@ A coluna "Gravidade" é só a minha impressão por enquanto. Nenhum foi reportad
 | 11 | O último IP vem do cabeçalho `True-Client-IP`, que quem faz a requisição controla, então dá para falsificar (o `0.0.0.0` fixo no navegador é esperado) | Baixa | Já confirmado com `1.2.3.4`; falta só guardar os passos |
 | 12 | Criar item no carrinho devolve 200, enquanto as outras criações devolvem 201; `BasketId` é string e `bid` é número | Baixa | Só inconsistência, anotar nos testes |
 | 13 | A API de saldo aceita valores fora de 10 a 1000 (9, 1001 e -10 voltam 200); a regra só existe no formulário | Alta | Anotar o saldo resultante de cada caso |
+| 14 | JSON mal formado em `PUT /rest/wallet/balance` devolve erro 500 com uma página HTML que mostra a stack trace, caminhos internos do servidor (`/juice-shop/build/server.js`) e a versão do Express | Média | Conferir se acontece em outras rotas; o esperado é um 400 com mensagem genérica |
+| 15 | Token inválido em `POST /api/Cards/` e `GET /rest/wallet/balance` devolve `{"status":"error","message":"Cannot read properties of undefined (reading 'data')"}` em vez de um 401 claro | Baixa | Ver o status HTTP com `curl -i`, que não apareceu no seu print |
 ---
 
 ## Esperado ou do ambiente
