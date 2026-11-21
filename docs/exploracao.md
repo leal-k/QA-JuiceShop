@@ -324,7 +324,7 @@ A coluna "Gravidade" é só a minha impressão por enquanto. Nenhum foi reportad
 | 10 | Upload de imagem do perfil falha antes de eu poder escolher o arquivo e mostra o JSON de erro cru (`file is not passed`, 400) | Média | Anotar o clique exato e ver se acontece sempre (outro usuário, outro navegador) |
 | 11 | O último IP vem do cabeçalho `True-Client-IP`, que quem faz a requisição controla, então dá para falsificar (o `0.0.0.0` fixo no navegador é esperado) | Baixa | Já confirmado com `1.2.3.4`; falta só guardar os passos |
 | 12 | Criar item no carrinho devolve 200, enquanto as outras criações devolvem 201; `BasketId` é string e `bid` é número | Baixa | Só inconsistência, anotar nos testes |
-
+| 13 | A API de saldo aceita valores fora de 10 a 1000 (9, 1001 e -10 voltam 200); a regra só existe no formulário | Alta | Anotar o saldo resultante de cada caso |
 ---
 
 ## Esperado ou do ambiente
