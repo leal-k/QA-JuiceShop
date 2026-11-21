@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   fullyParallel: true,
@@ -11,7 +11,16 @@ export default defineConfig({
   },
   projects: [
     { name: 'api', testDir: './api' },
-    
+    {
+      name: 'e2e',
+      testDir: './e2e/tests',
+      retries: process.env.CI ? 1 : 0,
+      use: {
+        ...devices['Desktop Chrome'],
+        trace: 'on-first-retry',
+        screenshot: 'only-on-failure',
+      },
+    },
   ],
 });
 

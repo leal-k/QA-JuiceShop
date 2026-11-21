@@ -12,7 +12,7 @@ Antes de automatizar qualquer coisa, passei pela aplicação como um usuário co
 
 Passei por busca, cadastro, login, perfil, carrinho, cupom, checkout, recycle, endereços, cartões e carteira. O que mais me chamou atenção:
 
-- A **exclusão de dados** diz que apagou, mas consigo logar de novo com o mesmo usuário
+- O pedido de **exclusão de dados** diz que "será processado em breve", mas a conta continua funcionando normal (consigo logar de novo logo depois) e a tela não dá prazo
 - O **token JWT carrega o hash da senha** dentro dele
 - A **troca de senha** é um GET com as senhas na URL, e ainda aceita trocar para a mesma senha
 - O recycle aceita **data de coleta no passado**
@@ -44,7 +44,7 @@ Quando loguei com esse usuário, vi de novo a chamada `whoami?fields=email`, jun
 
 **Export de dados.** Quando pedi meus dados em JSON, ele abriu outra janela com os dados.
 
-**Exclusão de dados.** Quando solicitei a exclusão dos meus dados e confirmei, o site disse que tinha apagado, mas consegui fazer login com o mesmo usuário.
+**Exclusão de dados.** A tela (Data Erasure Request, Art. 17 GDPR) pede a confirmação do e-mail e a resposta da pergunta de segurança, e os dois campos mostram o valor em cinza claro (placeholder). Depois de confirmar, aparece "Sorry to see you leave! Your erasure request will be processed shortly." e um botão para a página inicial, que me leva para a loja já deslogado. Logo em seguida consegui fazer login de novo com o mesmo usuário e a mesma senha, sem nenhum aviso de exclusão pendente.
 
 **Troca de senha.** Consegui mudar a senha para a mesma senha antiga. Na aba Network dá para ver que a chamada é um GET e que a URL entrega as senhas:
 
@@ -311,7 +311,7 @@ A coluna "Gravidade" é só a minha impressão por enquanto. Nenhum foi reportad
 
 | # | O que vi | Gravidade | O que falta reproduzir |
 |---|---|---|---|
-| 1 | Exclusão de dados confirma que apagou, mas o login continua funcionando | Alta | Anotar o texto exato que a tela mostra e tentar logar de novo depois de recarregar |
+| 1 | Pedido de exclusão de dados diz que "será processado em breve", mas a conta continua funcionando e a tela não dá prazo nem confirmação | Média | Esperar alguns minutos e tentar o login de novo; anotar a chamada de API |
 | 2 | O JWT leva o hash da senha dentro do payload | Alta | Já decodificado, falta conferir com um usuário novo |
 | 3 | Troca de senha é um GET com `current`, `new` e `repeat` na URL | Alta | Ver o que acontece se faltar algum parâmetro |
 | 4 | Troca de senha aceita a mesma senha de antes | Média | Repetir com um usuário novo |
