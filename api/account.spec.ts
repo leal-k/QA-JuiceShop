@@ -71,4 +71,28 @@ test.describe('Conta do usuário', () => {
 
     expect(payload.data).not.toHaveProperty('password');
   });
+
+  test('pedido de exclusão de dados é aceito, mas a conta continua ativa [a validar]', async ({ request }) => {
+    const user = await createLoggedUser(request);
+
+    // a exclusão confere a resposta da pergunta de segurança, então registramos uma
+    const resposta = await request.post('/api/SecurityAnswers/', {
+      data: { UserId: user.id, answer: 'teste', SecurityQuestionId: 1 },
+    });
+    expect(resposta.status()).toBe(201);
+
+    const res = await request.post('/dataerasure', {
+      headers: { Cookie: `token=${user.token}` },
+      form: { email: user.email, securityAnswer: 'teste' },
+    });
+
+    expect(res.ok()).toBe(true);
+    expect(await res.text()).toContain('will be processed shortly');
+
+    // comportamento atual: o mesmo usuário ainda consegue entrar
+    const depois = await request.post('/rest/user/login', {
+      data: { email: user.email, password: PASSWORD },
+    });
+    expect(depois.status()).toBe(200);
+  });
 });
