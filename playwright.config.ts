@@ -19,6 +19,8 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         trace: 'on-first-retry',
         screenshot: 'only-on-failure',
+        actionTimeout: 10_000,
+        navigationTimeout: 15_000,
       },
     },
   ],
