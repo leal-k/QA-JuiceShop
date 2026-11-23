@@ -326,6 +326,8 @@ A coluna "Gravidade" é só a minha impressão por enquanto. Nenhum foi reportad
 | 13 | A API de saldo aceita valores fora de 10 a 1000 (9, 1001 e -10 voltam 200); a regra só existe no formulário | Alta | Anotar o saldo resultante de cada caso |
 | 14 | JSON mal formado em `PUT /rest/wallet/balance` devolve erro 500 com uma página HTML que mostra a stack trace, caminhos internos do servidor (`/juice-shop/build/server.js`) e a versão do Express | Média | Conferir se acontece em outras rotas; o esperado é um 400 com mensagem genérica |
 | 15 | Token inválido em `POST /api/Cards/` e `GET /rest/wallet/balance` devolve `{"status":"error","message":"Cannot read properties of undefined (reading 'data')"}` em vez de um 401 claro | Baixa | Ver o status HTTP com `curl -i`, que não apareceu no seu print |
+| 16 | Abrir `/dataerasure` com um usuário sem resposta de segurança devolve 500 "No answer found!" com stack trace e caminho interno, em vez de uma mensagem tratada | Baixa | Confirmado: com a resposta registrada a página abre normal |
+| 17 | No carrinho, os botões de quantidade (+ e -) e o de remover item, e o campo de busca da barra superior, não têm nome acessível: um leitor de tela só diz "botão" | Baixa | Conferir na aba Acessibilidade do inspetor do navegador |
 ---
 
 ## Esperado ou do ambiente
