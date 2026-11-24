@@ -15,10 +15,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  api-tests:
-    name: Testes de API
+  tests:
+    name: Testes (API e interface)
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Baixar o código
@@ -32,6 +32,9 @@ jobs:
 
       - name: Instalar as dependências
         run: npm ci
+
+      - name: Instalar o Chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Subir o Juice Shop
         run: docker compose up -d
@@ -51,8 +54,8 @@ jobs:
           docker compose logs
           exit 1
 
-      - name: Rodar os testes de API
-        run: npx playwright test --project=api
+      - name: Rodar os testes (API e interface)
+        run: npx playwright test
 
       - name: Publicar o relatório do Playwright
         if: ${{ !cancelled() }}
