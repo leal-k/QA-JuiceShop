@@ -328,6 +328,8 @@ A coluna "Gravidade" é só a minha impressão por enquanto. Nenhum foi reportad
 | 15 | Token inválido em `POST /api/Cards/` e `GET /rest/wallet/balance` devolve `{"status":"error","message":"Cannot read properties of undefined (reading 'data')"}` em vez de um 401 claro | Baixa | Ver o status HTTP com `curl -i`, que não apareceu no seu print |
 | 16 | Abrir `/dataerasure` com um usuário sem resposta de segurança devolve 500 "No answer found!" com stack trace e caminho interno, em vez de uma mensagem tratada | Baixa | Confirmado: com a resposta registrada a página abre normal |
 | 17 | No carrinho, os botões de quantidade (+ e -) e o de remover item, e o campo de busca da barra superior, não têm nome acessível: um leitor de tela só diz "botão" | Baixa | Conferir na aba Acessibilidade do inspetor do navegador |
+| 18 | Nas telas de endereço e de entrega, o nome acessível do botão Continue está trocado: "Proceed to payment selection" leva à entrega e "Proceed to delivery method selection" leva ao pagamento | Baixa | Conferir com o leitor de tela ou o inspetor de acessibilidade |
+| 19 | No resumo do pedido aparece uma aspa solta depois de "Card Holder" (`Card Holder" QA Teste`) | Baixa | Conferir na tela e tirar um print |
 ---
 
 ## Esperado ou do ambiente
