@@ -95,4 +95,13 @@ test.describe('Conta do usuário', () => {
     });
     expect(depois.status()).toBe(200);
   });
+
+  test('a troca de senha não deveria funcionar por GET com as senhas na URL', async ({ request }) => {
+    test.fail(true, 'Bug conhecido (exploracao.md, #3): a troca de senha é um GET com as senhas na URL');
+    const user = await createLoggedUser(request);
+
+    const res = await changePassword(request, user.token, PASSWORD, NOVA_SENHA);
+
+    expect(res.ok()).toBe(false);
+  });
 });

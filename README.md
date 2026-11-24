@@ -7,7 +7,7 @@ Suíte de testes automatizados, de API e de interface, para o [OWASP Juice Shop]
 ## O que tem aqui
 
 - **Exploração manual** dos fluxos principais, com as chamadas de API que vi no DevTools: [`docs/exploracao.md`](docs/exploracao.md)
-- **23 testes de API** com Playwright (cadastro, login, carrinho, carteira e conta). 5 deles são falhas esperadas, de bugs que encontrei e deixei documentados
+- **25 testes de API** com Playwright (cadastro, login, carrinho, carteira e conta). 7 deles são falhas esperadas, de bugs que encontrei e deixei documentados
 - **Testes de interface (E2E)** com Playwright e Page Objects: cadastro e login pela tela, exclusão de dados e o checkout completo, com os três tipos de frete
 - **CI no GitHub Actions** que sobe o Juice Shop, roda tudo e publica o relatório
 - **Relatos de bug** que dá para reproduzir passo a passo: [`docs/bugs/`](docs/bugs)
@@ -56,6 +56,8 @@ Como o Juice Shop é vulnerável de propósito, parte do que encontrei são falh
 | [BUG-02](docs/bugs/bug-02-jwt-expoe-hash-da-senha.md) | O token do login leva dentro dele o hash da senha, que é um MD5 sem sal | Alta |
 | [BUG-04](docs/bugs/bug-04-troca-de-senha-aceita-a-mesma-senha.md) | A troca de senha aceita a mesma senha de antes | Média |
 | [BUG-01](docs/bugs/bug-01-exclusao-de-dados-nao-apaga-a-conta.md) | O pedido de exclusão de dados diz que será processado em breve, mas a conta continua funcionando e a tela não dá prazo | Média |
+| [BUG-03](docs/bugs/bug-03-troca-de-senha-por-get-com-senha-na-url.md) | A troca de senha é um GET com as senhas escritas na URL | Alta |
+| [BUG-14](docs/bugs/bug-14-json-mal-formado-expoe-stack-trace.md) | JSON mal formado devolve 500 com a stack trace e os caminhos internos do servidor | Média |
 
 ## Estrutura do projeto
 
