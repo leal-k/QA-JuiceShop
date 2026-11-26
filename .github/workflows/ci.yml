@@ -61,7 +61,7 @@ jobs:
         run: |
           docker run --rm -i --network host \
             -v "$PWD/load":/scripts \
-            grafana/k6:<versão> run -e PERFIL=smoke /scripts/search-login.js
+            grafana/k6:2.4.0 run -e PERFIL=smoke /scripts/search-login.js
 
       - name: Publicar o relatório do Playwright
         if: ${{ !cancelled() }}
