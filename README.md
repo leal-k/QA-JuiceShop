@@ -8,6 +8,7 @@ Suíte de testes automatizados, de API e de interface, para o [OWASP Juice Shop]
 
 - **Exploração manual** dos fluxos principais, com as chamadas de API que vi no DevTools: [`docs/exploracao.md`](docs/exploracao.md)
 - **25 testes de API** com Playwright (cadastro, login, carrinho, carteira e conta). 7 deles são falhas esperadas, de bugs que encontrei e deixei documentados
+**Plano de testes**, com escopo, riscos e prioridades: [docs/plano-de-testes.md](docs/plano-de-testes.md)
 - **Testes de interface (E2E)** com Playwright e Page Objects: cadastro e login pela tela, exclusão de dados e o checkout completo, com os três tipos de frete
 - **CI no GitHub Actions** que sobe o Juice Shop, roda tudo e publica o relatório
 - **Relatos de bug** que dá para reproduzir passo a passo: [`docs/bugs/`](docs/bugs)
