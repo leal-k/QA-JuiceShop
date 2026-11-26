@@ -21,7 +21,7 @@ const test = base.extend<{ compra: { cesta: BasketPage; checkout: CheckoutPage }
 });
 
 test.describe('Checkout', () => {
-  test('compra completa: carrinho, endereço, entrega, pagamento e pedido', async ({ page, compra }) => {
+  test('compra completa: carrinho, endereço, entrega, pagamento e pedido', { tag: '@smoke' }, async ({ page, compra }) => {
     const { cesta, checkout } = compra;
 
     await cesta.open();

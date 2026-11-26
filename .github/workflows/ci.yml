@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: [master, main]
   workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * *'
 
 permissions:
   contents: read
@@ -62,6 +64,13 @@ jobs:
           docker run --rm -i --network host \
             -v "$PWD/load":/scripts \
             grafana/k6:2.4.0 run -e PERFIL=smoke /scripts/search-login.js
+      
+      - name: Teste de carga completo (só na execução agendada ou manual)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          docker run --rm -i --network host \
+            -v "$PWD/load":/scripts \
+            grafana/k6:2.4.0 run /scripts/search-login.js
 
       - name: Publicar o relatório do Playwright
         if: ${{ !cancelled() }}

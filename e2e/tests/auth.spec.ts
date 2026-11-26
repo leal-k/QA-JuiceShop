@@ -4,7 +4,7 @@ import { RegisterPage } from '../pages/RegisterPage';
 import { LoginPage } from '../pages/LoginPage';
 import { createUser, PASSWORD } from '../../api/helpers/auth';
 
-test('cadastro pela tela leva ao login e o novo usuário consegue entrar', async ({ page }) => {
+test('cadastro pela tela leva ao login e o novo usuário consegue entrar', { tag: '@smoke' }, async ({ page }) => {
   const email = `qa-${randomUUID()}@example.com`;
   const register = new RegisterPage(page);
   const login = new LoginPage(page);

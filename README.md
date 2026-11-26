@@ -89,10 +89,12 @@ Como o Juice Shop é vulnerável de propósito, parte do que encontrei são falh
 - A **carteira cripto**, que exige uma extensão de navegador (MetaMask) e não dá para automatizar de forma simples
 - A **configuração de 2FA**, que exigiria gerar o código TOTP dentro dos testes
 
-## O que vem a seguir
+## Como a suíte roda
 
-- Etiquetas `@smoke` e `@regression`, para rodar só o essencial a cada push e a suíte completa à noite
-- Mais relatos de bug
+- **A cada push e pull request:** a suíte inteira (API e interface) e o smoke de carga.
+- **Toda noite:** a mesma coisa, mais a carga completa de 2 minutos.
+- **Só o essencial, à mão:** `npm run test:smoke`, que roda os testes marcados com `@smoke` (um por fluxo crítico).
+- **Dependências:** o Dependabot propõe as atualizações do npm e das actions toda semana. As imagens do Juice Shop e do k6 ficam fixadas de propósito.
 
 ## Aviso
 

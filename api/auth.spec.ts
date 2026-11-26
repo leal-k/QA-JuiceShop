@@ -25,7 +25,7 @@ test.describe('Cadastro e login', () => {
     expect(body.data).not.toHaveProperty('password');
   });
 
-  test('login válido devolve token e id do carrinho', async ({ request }) => {
+  test('login válido devolve token e id do carrinho', { tag: '@smoke' }, async ({ request }) => {
     const { email } = await createUser(request);
 
     const res = await request.post('/rest/user/login', {

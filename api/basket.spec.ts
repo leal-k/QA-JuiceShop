@@ -6,7 +6,7 @@ const PRODUTO = 1;
 const MAX_POR_PRODUTO = 5;
 
 test.describe('Carrinho', () => {
-  test('adicionar item devolve 200 e o item criado', async ({ request }) => {
+  test('adicionar item devolve 200 e o item criado', { tag: '@smoke' }, async ({ request }) => {
     const user = await createLoggedUser(request);
 
     const res = await addItem(request, user, PRODUTO, 1);
