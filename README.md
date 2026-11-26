@@ -10,6 +10,7 @@ Suíte de testes automatizados, de API e de interface, para o [OWASP Juice Shop]
 - **25 testes de API** com Playwright (cadastro, login, carrinho, carteira e conta). 7 deles são falhas esperadas, de bugs que encontrei e deixei documentados
 **Plano de testes**, com escopo, riscos e prioridades: [docs/plano-de-testes.md](docs/plano-de-testes.md)
 - **Testes de interface (E2E)** com Playwright e Page Objects: cadastro e login pela tela, exclusão de dados e o checkout completo, com os três tipos de frete
+- **Teste de carga** com k6 (busca e login, com limites de aceitação). O smoke roda no CI, e a carga completa roda à mão: [`load/search-login.js`](load/search-login.js)
 - **CI no GitHub Actions** que sobe o Juice Shop, roda tudo e publica o relatório
 - **Relatos de bug** que dá para reproduzir passo a passo: [`docs/bugs/`](docs/bugs)
 
@@ -32,6 +33,13 @@ Testes de interface:
 ```bash
 npx playwright install chromium
 npx playwright test --project=e2e
+```
+
+Teste de carga (smoke de 10 segundos, ou a carga completa de 2 minutos sem o `-e`):
+
+```bash
+docker run --rm -i --network host -v "$PWD/load":/scripts:z \
+  grafana/k6 run -e PERFIL=smoke /scripts/search-login.js
 ```
 
 No Fedora, onde o Playwright não tem suporte oficial, eu rodo os testes de interface na imagem Docker oficial dele: `bash scripts/e2e-docker.sh`.
@@ -83,7 +91,6 @@ Como o Juice Shop é vulnerável de propósito, parte do que encontrei são falh
 
 ## O que vem a seguir
 
-- Testes de carga com k6, com limites de aceitação
 - Etiquetas `@smoke` e `@regression`, para rodar só o essencial a cada push e a suíte completa à noite
 - Mais relatos de bug
 

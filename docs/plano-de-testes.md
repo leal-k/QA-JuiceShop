@@ -33,7 +33,7 @@ Trabalho em camadas, da mais barata para a mais cara:
 1. **Exploração manual primeiro.** Antes de automatizar, passei pela aplicação como usuário, olhando a aba Network do DevTools. É dali que saem as regras, os limites e as chamadas de API que os testes usam. Está tudo em `docs/exploracao.md`.
 2. **Testes de API.** São a base: rápidos, estáveis e baratos de manter. Cobrem as regras de negócio e os limites.
 3. **Testes de interface (E2E), só para os fluxos críticos.** São mais lentos e oscilam mais, então uso poucos: cadastro e login, exclusão de dados e o checkout inteiro. Tudo que não é o foco do teste (criar usuário, pôr item no carrinho, cadastrar cartão e endereço) é preparado pela API.
-4. **Testes de carga (planejado).** Com k6, com limites de aceitação.
+4. **Testes de carga.** Com k6, para a busca e o login, com limites de aceitação calibrados a partir da primeira medição. Com 10 usuários, o p95 ficou em 6 ms na busca e 8 ms no login, sem nenhum erro. O smoke roda no CI e a carga completa roda à mão.
 
 Nas regras com limite uso **testes de fronteira**: o valor no limite e o primeiro fora dele (5 e 6 unidades no carrinho; 10 e 1000 no saldo, 9 e 1001 fora).
 
@@ -95,6 +95,7 @@ No total são 33 testes: 25 de API e 8 de tela.
 - O Juice Shop é vulnerável de propósito, então parte do que achei é falha planejada do próprio projeto. O valor do trabalho está no processo, não em ter "descoberto" as falhas.
 - Só testo no Chromium, e só contra a versão fixada. Uma versão nova do Juice Shop pode mudar comportamentos e quebrar testes.
 - A cobertura de formulários e de acessibilidade é só manual.
+- O teste de carga roda na mesma máquina que a aplicação, então os números refletem esse computador, e não um servidor de produção. A carga usada (10 usuários) mostra que a aplicação aguenta o uso normal, mas não mostra o limite dela, para isso seria preciso um teste de estresse.
 
 ## Próximos passos
 

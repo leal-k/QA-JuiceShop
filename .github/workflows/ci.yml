@@ -57,6 +57,12 @@ jobs:
       - name: Rodar os testes (API e interface)
         run: npx playwright test
 
+      - name: Teste de carga (smoke)
+        run: |
+          docker run --rm -i --network host \
+            -v "$PWD/load":/scripts \
+            grafana/k6:<versão> run -e PERFIL=smoke /scripts/search-login.js
+
       - name: Publicar o relatório do Playwright
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v5
